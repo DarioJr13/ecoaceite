@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla #2 - Dashboard de Reciclaje</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">EcoAceite: Dashboard</h1>
+            </div>
+            <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
+                <i data-lucide="user" class="w-5 h-5 mr-2"></i>
+                Mi Cuenta
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Carrusel de imágenes -->
+        <div class="mb-8 bg-blue-100 p-4 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Imágenes Destacadas</h2>
+            <div class="swiper-container h-64 rounded-lg overflow-hidden">
+                <div class="swiper-wrapper">
+                    <!-- Las imágenes se cargarán dinámicamente aquí -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <!-- Opciones con iconos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="reciclaje.html">
+            <div class="bg-red-100 p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="recycle" class="w-8 h-8 text-red-500 mr-3"></i>
+                    <h3 class="text-lg font-semibold">Inducción de reciclaje</h3>
+                </div>
+                <p class="text-gray-600">Aprende cómo reciclar aceite de cocina correctamente.</p>
+            </div>
+            </a>
+             <a href="puntos-de-entrega.html">
+            <div class="bg-yellow-100 p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="map-pin" class="w-8 h-8 text-yellow-500 mr-3"></i>
+                    <h3 class="text-lg font-semibold">Puntos de Entrega</h3>
+                </div>
+                <p class="text-gray-600">Encuentra los puntos de entrega de aceite más cercanos.</p>
+            </div>
+            </a>
+             <a href="administrar-puntos.html">
+            <div class="bg-green-100 p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="trophy" class="w-8 h-8 text-green-500 mr-3"></i>
+                    <h3 class="text-lg font-semibold">Administrar puntos</h3>
+                </div>
+                <p class="text-gray-600">Gestiona tus puntos y recompensas por reciclar.</p>
+            </div>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2024 EcoAceite. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Inicializar los iconos de Lucide
+            lucide.createIcons();
+
+            // Cargar imágenes para el carrusel
+            const carouselImages = [
+                '/api/placeholder/800/400',
+                '/api/placeholder/800/400',
+                '/api/placeholder/800/400',
+                '/api/placeholder/800/400'
+            ];
+
+            const swiperWrapper = $('.swiper-wrapper');
+
+            carouselImages.forEach((src, index) => {
+                const slide = $('<div class="swiper-slide"></div>');
+                const skeletonImg = $('<div class="w-full h-full bg-gray-300 rounded skeleton-img animate-pulse"></div>');
+                const img = $('<img>').attr('src', src).attr('alt', `Imagen ${index + 1}`).addClass('w-full h-full object-cover');
+                
+                img.on('load', function() {
+                    skeletonImg.replaceWith(img);
+                }).on('error', function() {
+                    skeletonImg.text('Error al cargar la imagen');
+                });
+
+                slide.append(skeletonImg);
+                swiperWrapper.append(slide);
+            });
+
+            // Inicializar Swiper
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                },
+            });
+
+            // Lógica para las imágenes con esqueleto
+            $('.skeleton-img').each(function() {
+                var img = $('<img>');
+                img.attr('src', $(this).data('src'));
+                img.attr('alt', $(this).attr('alt'));
+                img.addClass($(this).attr('class'));
+                img.removeClass('skeleton-img bg-gray-300 animate-pulse');
+                
+                img.on('load', function() {
+                    $(this).removeClass('hidden');
+                }).on('error', function() {
+                    $(this).addClass('hidden');
+                    $(img).prev('.skeleton-img').addClass('animate-pulse');
+                });
+
+                $(this).after(img);
+            });
+        });
+    </script>
+</body>
+</html>

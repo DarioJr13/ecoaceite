@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inducción de Reciclaje - EcoAceite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">EcoAceite: Inducción de Reciclaje</h1>
+            </div>
+            <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
+                <i data-lucide="user" class="w-5 h-5 mr-2"></i>
+                Mi Cuenta
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Carrusel de imágenes -->
+        <div class="mb-8 bg-red-100 p-4 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Imágenes Instructivas</h2>
+            <div class="swiper-container h-64 rounded-lg overflow-hidden">
+                <div class="swiper-wrapper">
+                    <!-- Las imágenes se cargarán dinámicamente aquí -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <!-- Sección de videos -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Videos de Inducción</h2>
+            <div class="relative">
+                <div class="swiper-container-videos overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <!-- Los videos se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+                <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow swiper-button-prev-videos">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow swiper-button-next-videos">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2024 EcoAceite. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Inicializar los iconos de Lucide
+            lucide.createIcons();
+
+            // Cargar imágenes para el carrusel
+            const carouselImages = [
+                '/api/placeholder/800/400',
+                '/api/placeholder/800/400',
+                '/api/placeholder/800/400',
+                '/api/placeholder/800/400'
+            ];
+
+            const swiperWrapper = $('.swiper-wrapper').first();
+
+            carouselImages.forEach((src, index) => {
+                const slide = $('<div class="swiper-slide"></div>');
+                const skeletonImg = $('<div class="w-full h-full bg-gray-300 rounded skeleton-img animate-pulse"></div>');
+                const img = $('<img>').attr('src', src).attr('alt', `Imagen instructiva ${index + 1}`).addClass('w-full h-full object-cover');
+                
+                img.on('load', function() {
+                    skeletonImg.replaceWith(img);
+                }).on('error', function() {
+                    skeletonImg.text('Error al cargar la imagen');
+                });
+
+                slide.append(skeletonImg);
+                swiperWrapper.append(slide);
+            });
+
+            // Inicializar Swiper para imágenes
+            const swiperImages = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                },
+            });
+
+            // Cargar videos (simulados con placeholders)
+            const videoPlaceholders = [
+                { title: 'Introducción al Reciclaje de Aceite', duration: '5:30' },
+                { title: 'Cómo Almacenar el Aceite Usado', duration: '3:45' },
+                { title: 'Proceso de Reciclaje del Aceite', duration: '7:15' },
+                { title: 'Beneficios del Reciclaje de Aceite', duration: '4:20' },
+            ];
+
+            const swiperWrapperVideos = $('.swiper-container-videos .swiper-wrapper');
+
+            videoPlaceholders.forEach((video, index) => {
+                const slide = $(`
+                    <div class="swiper-slide">
+                        <div class="bg-yellow-100 p-4 rounded-lg shadow">
+                            <div class="w-full h-40 bg-gray-300 rounded mb-2 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="w-12 h-12 text-gray-500"></i>
+                            </div>
+                            <h3 class="font-semibold">${video.title}</h3>
+                            <p class="text-sm text-gray-600">Duración: ${video.duration}</p>
+                        </div>
+                    </div>
+                `);
+                swiperWrapperVideos.append(slide);
+            });
+
+            // Inicializar Swiper para videos
+            const swiperVideos = new Swiper('.swiper-container-videos', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.swiper-button-next-videos',
+                    prevEl: '.swiper-button-prev-videos',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+                },
+            });
+
+            // Lógica para las imágenes con esqueleto
+            $('.skeleton-img').each(function() {
+                var img = $('<img>');
+                img.attr('src', $(this).data('src'));
+                img.attr('alt', $(this).attr('alt'));
+                img.addClass($(this).attr('class'));
+                img.removeClass('skeleton-img bg-gray-300 animate-pulse');
+                
+                img.on('load', function() {
+                    $(this).removeClass('hidden');
+                }).on('error', function() {
+                    $(this).addClass('hidden');
+                    $(img).prev('.skeleton-img').addClass('animate-pulse');
+                });
+
+                $(this).after(img);
+            });
+        });
+    </script>
+</body>
+</html>

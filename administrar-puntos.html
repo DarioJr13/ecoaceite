@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Puntos - EcoAceite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="h-full flex flex-col bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">EcoAceite: Administrar Puntos</h1>
+            </div>
+            <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
+                <i data-lucide="user" class="w-5 h-5 mr-2"></i>
+                Mi Cuenta
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Puntos Totales</h2>
+                <p class="text-4xl font-bold text-green-500" id="puntosTotal">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Litros Reciclados</h2>
+                <p class="text-4xl font-bold text-blue-500" id="litrosReciclados">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Posición en Ranking</h2>
+                <p class="text-4xl font-bold text-purple-500" id="posicionRanking">0</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Progreso Mensual</h2>
+                <canvas id="progresoMensual"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Distribución de Puntos</h2>
+                <canvas id="distribucionPuntos"></canvas>
+            </div>
+        </div>
+
+      
+        <div class="bg-white p-6 rounded-lg shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4">Top 10 Recicladores</h2>
+            <div class="flex justify-center mb-4">
+                <div class="flex items-end space-x-4">
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="helmet" class="w-12 h-12 text-gray-500 mb-2"></i>
+                        <div class="w-20 bg-silver h-24 rounded-t-lg"></div>
+                        <div class="w-20 bg-gray-200 p-2 text-center">
+                            <span class="text-xs font-bold" id="second-place"></span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="trophy" class="w-16 h-16 text-yellow-500 mb-2"></i>
+                        <div class="w-20 bg-gold h-32 rounded-t-lg"></div>
+                        <div class="w-20 bg-yellow-200 p-2 text-center">
+                            <span class="text-xs font-bold" id="first-place"></span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i data-lucide="disc" class="w-12 h-12 text-gray-500 mb-2"></i>
+                        <div class="w-20 bg-bronze h-20 rounded-t-lg"></div>
+                        <div class="w-20 bg-yellow-100 p-2 text-center">
+                            <span class="text-xs font-bold" id="third-place"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="rankingContainer">
+                <!-- Los elementos del ranking se generarán dinámicamente aquí -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2024 EcoAceite. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            lucide.createIcons();
+
+            // Generar datos aleatorios
+            $('#puntosTotal').text(Math.floor(Math.random() * 10000));
+            $('#litrosReciclados').text(Math.floor(Math.random() * 1000));
+            $('#posicionRanking').text(Math.floor(Math.random() * 100) + 1);
+
+            // Gráfico de Progreso Mensual
+            new Chart(document.getElementById('progresoMensual'), {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Litros Reciclados',
+                        data: [65, 59, 80, 81, 56, 55],
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            });
+
+            // Gráfico de Distribución de Puntos
+            new Chart(document.getElementById('distribucionPuntos'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Reciclaje', 'Referidos', 'Bonos'],
+                    datasets: [{
+                        data: [300, 50, 100],
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                    }]
+                }
+            });
+
+           // Generar ranking
+            const nicknames = [
+                'ElCholo507', 'LaDiabla1980', 'ElOriginal', 'ColónCity', 
+                'SaborPanama', 'ElTigre310', 'LaReina233', 'ElPipe', 'ElDelWest',
+                'DoñaPatacon', 'ElGallinazo'
+            ];
+            const rankingContainer = $('#rankingContainer');
+
+            let rankingData = nicknames.map((nickname, index) => ({
+                nickname: nickname,
+                litros: Math.floor(Math.random() * 500) + 100 // Litros aleatorios entre 100 y 600
+            }));
+
+            // Ordenar el ranking de mayor a menor
+            rankingData.sort((a, b) => b.litros - a.litros);
+
+            // Asignar los primeros tres lugares
+            $('#first-place').text(`${rankingData[0].nickname} (${rankingData[0].litros}L)`);
+            $('#second-place').text(`${rankingData[1].nickname} (${rankingData[1].litros}L)`);
+            $('#third-place').text(`${rankingData[2].nickname} (${rankingData[2].litros}L)`);
+
+            // Generar el resto del ranking
+            rankingData.slice(3).forEach((data, index) => {
+                const rankItem = $(`
+                    <div class="bg-gray-100 p-4 rounded-lg flex items-center justify-between">
+                        <span class="font-bold">#${index + 4}</span>
+                        <span>${data.nickname}</span>
+                        <span class="text-green-600 font-bold">${data.litros}L</span>
+                    </div>
+                `);
+
+                rankingContainer.append(rankItem);
+            });
+        });
+    </script>
+</body>
+</html>

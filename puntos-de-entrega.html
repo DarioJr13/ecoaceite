@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puntos de Entrega - EcoAceite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map { height: 400px; }
+    </style>
+</head>
+<body class="h-full flex flex-col bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">EcoAceite: Puntos de Entrega</h1>
+            </div>
+            <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
+                <i data-lucide="user" class="w-5 h-5 mr-2"></i>
+                Mi Cuenta
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="mb-8 bg-yellow-100 p-4 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Mapa de Entrega (Panamá y Colón)</h2>
+            <div id="map" class="rounded-lg shadow"></div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex justify-between items-center">
+                <div class="w-1/3 bg-green-100 p-4 rounded-lg text-center">
+                    <p class="font-semibold">Saliendo a Entrega</p>
+                </div>
+                <div class="w-1/3 bg-blue-100 p-4 rounded-lg text-center">
+                    <p class="font-semibold">Llegando a punto de entrega</p>
+                </div>
+                <div class="w-1/3 bg-red-100 p-4 rounded-lg text-center">
+                    <p class="font-semibold">Entregado Satisfactoriamente</p>
+                </div>
+            </div>
+            <div class="relative mt-2">
+                <div class="absolute w-full h-1 bg-gray-200 top-1/2 transform -translate-y-1/2"></div>
+                <div class="absolute w-1/2 h-1 bg-blue-500 top-1/2 transform -translate-y-1/2"></div>
+                <div class="flex justify-between relative">
+                    <div class="w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
+                    <div class="w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
+                    <div class="w-4 h-4 rounded-full bg-gray-200 border-2 border-white"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button id="obtenerPuntos" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+                Obtener Puntos
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2024 EcoAceite. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Inicializar los iconos de Lucide
+            lucide.createIcons();
+
+            // Inicializar el mapa
+            var map = L.map('map').setView([9.1165, -79.5333], 8); // Coordenadas centradas entre Panamá y Colón
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Añadir marcadores
+            var entregaIcon = L.icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            var destinoIcon = L.icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            // Coordenadas de Panamá Ciudad
+            L.marker([8.9824, -79.5199], {icon: entregaIcon}).addTo(map)
+                .bindPopup('Punto de Entrega en Ciudad de Panamá');
+            
+            // Coordenadas de Colón
+            L.marker([9.3569, -79.9001], {icon: destinoIcon}).addTo(map)
+                .bindPopup('Destino en Colón');
+
+            // Lógica para obtener puntos
+            $('#obtenerPuntos').click(function() {
+                alert('¡Has obtenido 100 puntos por tu entrega!');
+            });
+        });
+    </script>
+</body>
+</html>
