@@ -110,29 +110,27 @@
 
              // Cargar videos reales
                 const videos = [
-                { src: 'Video/Oil-calidad.mp4', title: 'Introduction to Oil Recycling', duration: '5:30' },
-                { src: 'Video/Oil-Camion.mp4', title: 'How to Store Used Oil', duration: '5:30' },
-                { src: 'Video/Oil-Video-Completo.mp4', title: 'Oil Recycling Process', duration: '5:30' }
-                ];
+    { src: 'EcoOil/Video/Oil-calidad.mp4', title: 'Introduction to Oil Recycling', duration: '0:05' },
+    { src: 'EcoOil/Video/Oil-Camion.mp4', title: 'How to Store Used Oil', duration: '0:13' },
+    { src: 'EcoOil/Video/Oil-Video-Completo.mp4', title: 'Oil Recycling Process', duration: '1:02' }
+];
 
-                const videoContainer = $('.grid');
+const videoContainer = $('.grid');
 
-            const swiperWrapperVideos = $('.swiper-container-videos .swiper-wrapper');
-
-            videos.forEach((video, index) => {
-        const videoElement = $(`
-            <div class="bg-yellow-100 p-4 rounded-lg shadow">
-                <video class="w-full h-40 rounded mb-2" controls>
-                    <source src="${video.src}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <h3 class="font-semibold">${video.title}</h3>
-                 <p class="text-sm text-gray-600">Duración: ${video.duration}</p>
-            </div>
-        `);
-      
-         videoContainer.append(videoElement);
-    });
+videos.forEach((video, index) => {
+    const videoElement = $(`
+        <div class="bg-yellow-100 p-4 rounded-lg shadow">
+            <video class="w-full h-40 rounded mb-2" controls preload="metadata">
+                <source src="${video.src}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3 class="font-semibold">${video.title}</h3>
+            <p class="text-sm text-gray-600">Duración: ${video.duration}</p>
+        </div>
+    `);
+    
+    videoContainer.append(videoElement);
+});
 
             // Inicializar Swiper para videos
             const swiperVideos = new Swiper('.swiper-container-videos', {
