@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puntos de Entrega - EcoAceite</title>
+    <title>Delivery Points - ECOOIL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,32 +17,32 @@
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
-                <h1 class="text-2xl font-bold">EcoAceite: Puntos de Entrega</h1>
+            <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="EcoOil/EcoOil.jpeg" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">ECOOIL: Delivery Points</h1>
             </div>
             <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
                 <i data-lucide="user" class="w-5 h-5 mr-2"></i>
-                Mi Cuenta
+                My Account
             </button>
         </div>
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-8">
         <div class="mb-8 bg-yellow-100 p-4 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Mapa de Entrega (Panamá y Colón)</h2>
+            <h2 class="text-xl font-semibold mb-4">Delivery Map (Panama and Colon)</h2>
             <div id="map" class="rounded-lg shadow"></div>
         </div>
 
         <div class="mb-8">
             <div class="flex justify-between items-center">
                 <div class="w-1/3 bg-green-100 p-4 rounded-lg text-center">
-                    <p class="font-semibold">Saliendo a Entrega</p>
+                    <p class="font-semibold">Leaving for Delivery</p>
                 </div>
                 <div class="w-1/3 bg-blue-100 p-4 rounded-lg text-center">
-                    <p class="font-semibold">Llegando a punto de entrega</p>
+                    <p class="font-semibold">Arriving at delivery point</p>
                 </div>
                 <div class="w-1/3 bg-red-100 p-4 rounded-lg text-center">
-                    <p class="font-semibold">Entregado Satisfactoriamente</p>
+                    <p class="font-semibold">Delivered Satisfactorily</p>
                 </div>
             </div>
             <div class="relative mt-2">
@@ -58,14 +58,14 @@
 
         <div class="text-center">
             <button id="obtenerPuntos" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
-                Obtener Puntos
+                Get Points
             </button>
         </div>
     </main>
 
     <footer class="bg-gray-800 text-white py-4 mt-8">
-        <div class="container mx-auto px-4 text-center">
-            &copy; 2024 EcoAceite. Todos los derechos reservados.
+         <div class="container mx-auto px-4 text-center">
+            &copy; 2024 ECOOIL All rights reserved.
         </div>
     </footer>
 
@@ -112,6 +112,22 @@
             $('#obtenerPuntos').click(function() {
                 alert('¡Has obtenido 100 puntos por tu entrega!');
             });
+
+            $('.skeleton-img').each(function() {
+    var skeleton = $(this);
+    var img = $('<img>');
+    img.attr('src', skeleton.data('src'));
+    img.attr('alt', skeleton.attr('alt'));
+    img.addClass(skeleton.attr('class'));
+    img.removeClass('skeleton-img bg-gray-300 animate-pulse');
+    
+    img.on('load', function() {
+        skeleton.replaceWith(img);
+    }).on('error', function() {
+        skeleton.text('Error al cargar la imagen');
+        skeleton.addClass('animate-pulse');
+    });
+});
         });
     </script>
 </body>

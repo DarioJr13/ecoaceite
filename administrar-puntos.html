@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Puntos - EcoAceite</title>
+    <title>Manage Points - ECOOIL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -13,12 +13,12 @@
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
-                <h1 class="text-2xl font-bold">EcoAceite: Administrar Puntos</h1>
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="EcoOil/EcoOil.jpeg" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">ECOOIL: Manage Points</h1>
             </div>
             <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
                 <i data-lucide="user" class="w-5 h-5 mr-2"></i>
-                Mi Cuenta
+                My Account
             </button>
         </div>
     </header>
@@ -26,33 +26,33 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Puntos Totales</h2>
+                <h2 class="text-xl font-semibold mb-4">Total Points</h2>
                 <p class="text-4xl font-bold text-green-500" id="puntosTotal">0</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Litros Reciclados</h2>
+                <h2 class="text-xl font-semibold mb-4">Recycled Liters</h2>
                 <p class="text-4xl font-bold text-blue-500" id="litrosReciclados">0</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Posición en Ranking</h2>
+                <h2 class="text-xl font-semibold mb-4">Ranking Position</h2>
                 <p class="text-4xl font-bold text-purple-500" id="posicionRanking">0</p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Progreso Mensual</h2>
+                <h2 class="text-xl font-semibold mb-4">Monthly Progress</h2>
                 <canvas id="progresoMensual"></canvas>
             </div>
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Distribución de Puntos</h2>
+                <h2 class="text-xl font-semibold mb-4">Points Distribution</h2>
                 <canvas id="distribucionPuntos"></canvas>
             </div>
         </div>
 
       
         <div class="bg-white p-6 rounded-lg shadow mb-8">
-            <h2 class="text-xl font-semibold mb-4">Top 10 Recicladores</h2>
+            <h2 class="text-xl font-semibold mb-4">Top 10 Recyclers</h2>
             <div class="flex justify-center mb-4">
                 <div class="flex items-end space-x-4">
                     <div class="flex flex-col items-center">
@@ -86,7 +86,7 @@
 
     <footer class="bg-gray-800 text-white py-4 mt-8">
         <div class="container mx-auto px-4 text-center">
-            &copy; 2024 EcoAceite. Todos los derechos reservados.
+            &copy; 2024 ECOOIL All rights reserved.
         </div>
     </footer>
 
@@ -117,7 +117,7 @@
             new Chart(document.getElementById('distribucionPuntos'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['Reciclaje', 'Referidos', 'Bonos'],
+                    labels: ['Recycling', 'Referrals', 'Bonds'],
                     datasets: [{
                         data: [300, 50, 100],
                         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
@@ -158,6 +158,22 @@
 
                 rankingContainer.append(rankItem);
             });
+
+            $('.skeleton-img').each(function() {
+    var skeleton = $(this);
+    var img = $('<img>');
+    img.attr('src', skeleton.data('src'));
+    img.attr('alt', skeleton.attr('alt'));
+    img.addClass(skeleton.attr('class'));
+    img.removeClass('skeleton-img bg-gray-300 animate-pulse');
+    
+    img.on('load', function() {
+        skeleton.replaceWith(img);
+    }).on('error', function() {
+        skeleton.text('Error al cargar la imagen');
+        skeleton.addClass('animate-pulse');
+    });
+});
         });
     </script>
 </body>

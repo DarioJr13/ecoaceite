@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inducción de Reciclaje - EcoAceite</title>
+    <title>Recycling Induction - ECOOIL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -23,12 +23,12 @@
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
-                <h1 class="text-2xl font-bold">EcoAceite: Inducción de Reciclaje</h1>
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="EcoOil/EcoOil.jpeg" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">ECOOIL: Recycling Induction</h1>
             </div>
             <button id="userMenu" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded flex items-center">
                 <i data-lucide="user" class="w-5 h-5 mr-2"></i>
-                Mi Cuenta
+                My Account
             </button>
         </div>
     </header>
@@ -36,7 +36,7 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <!-- Carrusel de imágenes -->
         <div class="mb-8 bg-red-100 p-4 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Imágenes Instructivas</h2>
+            <h2 class="text-xl font-semibold mb-4">Instructional Images</h2>
             <div class="swiper-container h-64 rounded-lg overflow-hidden">
                 <div class="swiper-wrapper">
                     <!-- Las imágenes se cargarán dinámicamente aquí -->
@@ -48,27 +48,17 @@
         </div>
 
         <!-- Sección de videos -->
-        <div class="mb-8">
-            <h2 class="text-xl font-semibold mb-4">Videos de Inducción</h2>
-            <div class="relative">
-                <div class="swiper-container-videos overflow-hidden">
-                    <div class="swiper-wrapper">
-                        <!-- Los videos se cargarán dinámicamente aquí -->
-                    </div>
-                </div>
-                <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow swiper-button-prev-videos">
-                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                </button>
-                <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow swiper-button-next-videos">
-                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-4">Induction Videos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Los videos se cargarán dinámicamente aquí -->
+    </div>
+</div>
     </main>
 
     <footer class="bg-gray-800 text-white py-4 mt-8">
-        <div class="container mx-auto px-4 text-center">
-            &copy; 2024 EcoAceite. Todos los derechos reservados.
+         <div class="container mx-auto px-4 text-center">
+            &copy; 2024 ECOOIL All rights reserved.
         </div>
     </footer>
 
@@ -79,10 +69,10 @@
 
             // Cargar imágenes para el carrusel
             const carouselImages = [
-                '/api/placeholder/800/400',
-                '/api/placeholder/800/400',
-                '/api/placeholder/800/400',
-                '/api/placeholder/800/400'
+                '/EcoOil/EcoOil-Galones.jpeg',
+                '/EcoOil/EcoOil-Galones-Afuera.jpeg',
+                '/EcoOil/EcoOilAuto.jpeg',
+                '/EcoOil/GalonesIndustriales.jpeg'
             ];
 
             const swiperWrapper = $('.swiper-wrapper').first();
@@ -117,30 +107,32 @@
                 },
             });
 
-            // Cargar videos (simulados con placeholders)
-            const videoPlaceholders = [
-                { title: 'Introducción al Reciclaje de Aceite', duration: '5:30' },
-                { title: 'Cómo Almacenar el Aceite Usado', duration: '3:45' },
-                { title: 'Proceso de Reciclaje del Aceite', duration: '7:15' },
-                { title: 'Beneficios del Reciclaje de Aceite', duration: '4:20' },
-            ];
+
+             // Cargar videos reales
+                const videos = [
+                { src: 'Video/Oil-calidad.mp4', title: 'Introduction to Oil Recycling', duration: '5:30' },
+                { src: 'Video/Oil-Camion.mp4', title: 'How to Store Used Oil', duration: '5:30' },
+                { src: 'Video/Oil-Video-Completo.mp4', title: 'Oil Recycling Process', duration: '5:30' }
+                ];
+
+                const videoContainer = $('.grid');
 
             const swiperWrapperVideos = $('.swiper-container-videos .swiper-wrapper');
 
-            videoPlaceholders.forEach((video, index) => {
-                const slide = $(`
-                    <div class="swiper-slide">
-                        <div class="bg-yellow-100 p-4 rounded-lg shadow">
-                            <div class="w-full h-40 bg-gray-300 rounded mb-2 flex items-center justify-center">
-                                <i data-lucide="play-circle" class="w-12 h-12 text-gray-500"></i>
-                            </div>
-                            <h3 class="font-semibold">${video.title}</h3>
-                            <p class="text-sm text-gray-600">Duración: ${video.duration}</p>
-                        </div>
-                    </div>
-                `);
-                swiperWrapperVideos.append(slide);
-            });
+            videos.forEach((video, index) => {
+        const videoElement = $(`
+            <div class="bg-yellow-100 p-4 rounded-lg shadow">
+                <video class="w-full h-40 rounded mb-2" controls>
+                    <source src="${video.src}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3 class="font-semibold">${video.title}</h3>
+                 <p class="text-sm text-gray-600">Duración: ${video.duration}</p>
+            </div>
+        `);
+      
+         videoContainer.append(videoElement);
+    });
 
             // Inicializar Swiper para videos
             const swiperVideos = new Swiper('.swiper-container-videos', {
@@ -161,22 +153,21 @@
             });
 
             // Lógica para las imágenes con esqueleto
-            $('.skeleton-img').each(function() {
-                var img = $('<img>');
-                img.attr('src', $(this).data('src'));
-                img.attr('alt', $(this).attr('alt'));
-                img.addClass($(this).attr('class'));
-                img.removeClass('skeleton-img bg-gray-300 animate-pulse');
-                
-                img.on('load', function() {
-                    $(this).removeClass('hidden');
-                }).on('error', function() {
-                    $(this).addClass('hidden');
-                    $(img).prev('.skeleton-img').addClass('animate-pulse');
-                });
-
-                $(this).after(img);
-            });
+         $('.skeleton-img').each(function() {
+    var skeleton = $(this);
+    var img = $('<img>');
+    img.attr('src', skeleton.data('src'));
+    img.attr('alt', skeleton.attr('alt'));
+    img.addClass(skeleton.attr('class'));
+    img.removeClass('skeleton-img bg-gray-300 animate-pulse');
+    
+    img.on('load', function() {
+        skeleton.replaceWith(img);
+    }).on('error', function() {
+        skeleton.text('Error al cargar la imagen');
+        skeleton.addClass('animate-pulse');
+    });
+});
         });
     </script>
 </body>

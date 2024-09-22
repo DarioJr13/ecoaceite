@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla #1 - Reciclaje de Aceite</title>
+    <title>ECOOIL-Reciclaje de Aceite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -20,12 +20,12 @@
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="/api/placeholder/50/50" alt="Logo"></div>
-                <h1 class="text-2xl font-bold">EcoAceite</h1>
+                <div class="w-12 h-12 bg-gray-300 rounded mr-4 skeleton-img" data-src="EcoOil/EcoOil.jpeg" alt="Logo"></div>
+                <h1 class="text-2xl font-bold">ECOOIL</h1>
             </div>
-            <div class="space-x-2">
-                <button id="openLoginModal" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Iniciar sesión</button>
-                <button id="openRegisterModal" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Regístrate</button>
+            <div class="space-x-6">
+                <button id="openLoginModal" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+                <button id="openRegisterModal" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Register</button>
             </div>
         </div>
     </header>
@@ -33,32 +33,32 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <div class="grid md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4">Objetivo</h2>
-                <p>Promover y facilitar el reciclaje de aceite de cocina usado</p>
+                <h2 class="text-xl font-semibold mb-4">Objective</h2>
+                <p>To promote and facilitate the recycling of used cooking oil</p>
             </div>
             <div class="bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4">Misión</h2>
-                <p>Reducir la contaminación ambiental causada por el desecho inadecuado de aceite de cocina</p>
+                <h2 class="text-xl font-semibold mb-4">Mission</h2>
+                <p>Reduce environmental pollution caused by improper disposal of cooking oil</p>
             </div>
             <div class="bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4">Visión</h2>
-                <p>Crear una comunidad consciente y activa en el reciclaje de aceite de cocina</p>
+                <h2 class="text-xl font-semibold mb-4">Vision</h2>
+                <p>To create a conscious and active community in recycling cooking oil</p>
             </div>
         </div>
 
         <div class="mb-8">
-            <div class="w-full h-64 bg-gray-300 rounded-lg shadow-lg skeleton-img" data-src="/api/placeholder/800/400" alt="Reciclaje de aceite de cocina"></div>
+            <div class="w-full h-64 bg-gray-300 rounded-lg shadow-lg skeleton-img" data-src="EcoOil/AceiteSlider-4.jpeg" alt="Reciclaje de aceite de cocina"></div>
         </div>
 
         <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-semibold mb-4">Explicación de quienes somos y del aplicativo</h2>
-            <p>Somos una iniciativa dedicada a facilitar el proceso de reciclaje de aceite de cocina usado. Nuestro aplicativo conecta a los hogares y negocios con centros de reciclaje cercanos, proporcionando información sobre cómo almacenar y transportar el aceite de manera segura. Juntos, podemos convertir un residuo problemático en un recurso valioso, protegiendo nuestro medio ambiente y contribuyendo a una economía circular.</p>
+            <h2 class="text-xl font-semibold mb-4">Explanation of who we are and the application</h2>
+            <p>We are an initiative dedicated to making the process of recycling used cooking oil easier. Our app connects households and businesses with nearby recycling centres, providing information on how to safely store and transport the oil. Together, we can turn a problematic waste into a valuable resource, protecting our environment and contributing to a circular economy.</p>
         </div>
     </main>
 
     <footer class="bg-gray-800 text-white py-4">
         <div class="container mx-auto px-4 text-center">
-            &copy; 2024 EcoAceite. Todos los derechos reservados.
+            &copy; 2024 ECOOIL All rights reserved.
         </div>
     </footer>
 
@@ -66,12 +66,12 @@
     <div id="loginModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Iniciar Sesión</h3>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Login</h3>
                 <div class="mt-2 px-7 py-3">
-                    <input type="email" placeholder="Correo electrónico" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                    <input type="password" placeholder="Contraseña" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                    <input type="email" placeholder="Email" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                    <input type="password" placeholder="Password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     <a href="Menu.html">     
-                    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Entrar</button>
+                    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Enten to</button>
                     </a>
                 </div>
             </div>
@@ -82,13 +82,13 @@
     <div id="registerModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Registrarse</h3>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Register</h3>
                 <div class="mt-2 px-7 py-3">
-                    <input type="text" placeholder="Nombre" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                    <input type="email" placeholder="Correo electrónico" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                    <input type="password" placeholder="Contraseña" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                    <input type="password" placeholder="Confirmar contraseña" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                    <button class="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Registrar</button>
+                    <input type="text" placeholder="Name" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                    <input type="email" placeholder="Email" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                    <input type="password" placeholder="Password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                    <input type="password" placeholder="Confirm Password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                    <button class="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Register</button>
                 </div>
             </div>
         </div>
@@ -96,22 +96,20 @@
 
     <script>
         $(document).ready(function() {
-            $('.skeleton-img').each(function() {
-                var img = $('<img>');
-                img.attr('src', $(this).data('src'));
-                img.attr('alt', $(this).attr('alt'));
-                img.addClass($(this).attr('class'));
-                img.removeClass('skeleton-img bg-gray-300 animate-pulse');
-                
-                img.on('load', function() {
-                    $(this).removeClass('hidden');
-                }).on('error', function() {
-                    $(this).addClass('hidden');
-                    $(img).prev('.skeleton-img').addClass('animate-pulse');
-                });
-
-                $(this).after(img);
-            });
+             $('.skeleton-img').each(function() {
+        var skeleton = $(this);
+        var img = $('<img>');
+        img.attr('src', skeleton.data('src'));
+        img.attr('alt', skeleton.attr('alt'));
+        img.addClass(skeleton.attr('class'));
+        img.removeClass('skeleton-img bg-gray-300 animate-pulse');
+        
+        img.on('load', function() {
+            skeleton.replaceWith(img);
+        }).on('error', function() {
+            skeleton.addClass('animate-pulse');
+        });
+    });
 
             // Abrir modal de inicio de sesión
             $("#openLoginModal").click(function() {
